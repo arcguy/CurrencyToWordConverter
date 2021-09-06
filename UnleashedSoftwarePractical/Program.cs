@@ -11,13 +11,16 @@ namespace UnleashedSoftwarePractical
             {
                 try
                 {
+                    //Gives instructions to user
                     Console.WriteLine("Enter an amount of money to convert to words. Please do not input any commas or currency symbols. To exit, type exit and press Enter");
                     string line = Console.ReadLine().ToLower();
+                    //checks if user wants to exit
                     if (line == "exit")
                         break;
                     else
                     {
-                        double money = double.Parse(line);
+                        //Checks to make sure input is valid and then converts it using the instance of the CurrencyConverter object
+                        double money = double.Parse(line);                        
                         if (money > -1)
                             Console.WriteLine(c.CurrencyToWords(Math.Round(money, 2)));
                         else
@@ -25,6 +28,7 @@ namespace UnleashedSoftwarePractical
                         Console.WriteLine();
                     }
                 }
+                //Error handling
                 catch (FormatException)
                 {
                     Console.WriteLine("Please enter only numeric values and ensure there are no commas or currency values");
