@@ -21,14 +21,14 @@ namespace UnleashedSoftwarePractical
         /// </summary>
         /// <param name="amount"></param>
         /// <returns></returns>
-        public string CurrencyToWords(decimal amount)
+        public string CurrencyToWords(double amount)
         {
             string converted;
-            decimal dollars = (int)Math.Truncate(amount);
-            decimal cents = Math.Round((amount - dollars) * 100, 0);
+            double dollars = (int)Math.Truncate(amount);
+            double cents = Math.Round((amount - dollars) * 100, 0);
 
-            Console.WriteLine("Dollars = " + dollars.ToString());
-            Console.WriteLine("Cents = " + cents.ToString());
+            //Console.WriteLine("Dollars = " + dollars.ToString());
+            //Console.WriteLine("Cents = " + cents.ToString());
 
             converted = ConvertAmount(dollars, "d");
             converted += ConvertAmount(cents, "c");
@@ -36,10 +36,10 @@ namespace UnleashedSoftwarePractical
             return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(converted.ToLower());
         }
 
-        private string ConvertAmount(decimal amount, string type)
+        private string ConvertAmount(double amount, string type)
         {
             string converted = "";
-            decimal num = amount;
+            double num = amount;
             if (num == 0)
                 converted += "Zero";
             //convert billions
@@ -94,10 +94,10 @@ namespace UnleashedSoftwarePractical
             return converted;
         }
 
-        private string ConvertThousandsPlus(decimal amount, int divider, string denomination)
+        private string ConvertThousandsPlus(double amount, int divider, string denomination)
         {
             string converted = "";
-            decimal num = amount / divider;
+            double num = amount / divider;
 
             if (num > 99)
             {
@@ -121,7 +121,7 @@ namespace UnleashedSoftwarePractical
             return converted;
         }
 
-        private string ConvertHundreds(decimal amount)
+        private string ConvertHundreds(double amount)
         {
             string converted = "";
             converted += ConvertLess20(amount / 100);
@@ -132,14 +132,14 @@ namespace UnleashedSoftwarePractical
             return converted;
         }
 
-        private string ConvertTens(decimal amount)
+        private string ConvertTens(double amount)
         {
-            decimal num = (amount /= 10);
+            double num = (amount /= 10);
 
             return tens[(int)num - 1];
         }
 
-        private string ConvertLess20(decimal num)
+        private string ConvertLess20(double num)
         {
             return oneto19[(int)num - 1];
         }
